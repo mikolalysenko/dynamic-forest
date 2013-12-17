@@ -116,7 +116,6 @@ tape("euler-tour-tree-simple", function(t) {
   t.ok(c.path(c), "c --- c")
 
   var ac = a.link(c)
-
   
   checkEulerTour(t, a)
   checkEulerTour(t, b)
@@ -131,12 +130,7 @@ tape("euler-tour-tree-simple", function(t) {
   t.ok(c.path(b), "c --- b")
   t.ok(c.path(c), "c --- c")
 
-  console.log(tourOf(a))
-
   ab.cut()
-
-  console.log(tourOf(a))
-
 
   checkEulerTour(t, a)
   checkEulerTour(t, b)
