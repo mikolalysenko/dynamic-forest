@@ -32,7 +32,7 @@ function checkTreap(t, treap) {
   }
   var n = visitRec(root, null)
   t.equals(n[0], list.length, "checking total count")
-  t.equals(n[1], list.some(function(v) { v.flag }), "checking flag")
+  t.equals(n[1], list.some(function(v) { return v.flag }), "checking total flagAggregate")
   //Check linked list and tree are consistent
   for(var i=0; i<list.length; ++i) {
     if(i > 0) {
@@ -112,6 +112,13 @@ tape("treap-random", function(t) {
       var values = nodes.map(function(v) { return v.value })
       t.same(values, list)
     }
+
+    if(Math.random() < 0.1) {
+      var pp = (Math.random() * list.length)|0
+      var s = Math.random()<0.5
+      nodes[pp].setFlag(s)
+      t.equals(nodes[pp].flag, s, "checking local flag")
+    }
   }
   checkTreap(t, x)
   var values = nodes.map(function(v) { return v.value })
@@ -142,6 +149,9 @@ tape("treap-merge-split-simple", function(t) {
   for(var i=1; i<10; ++i) {
     list.push(i)
     nodes.push(nodes[i-1].insert(i))
+    if(Math.random() < 0.25) {
+      nodes[nodes.length-1].setFlag(true)
+    }
   }
   checkTreap(t, x)
   t.same(treapItems(x), list)
@@ -153,6 +163,7 @@ tape("treap-merge-split-simple", function(t) {
     var x = nodes[i]
     var y = x.split()
     
+
     checkTreap(t, x)
     t.same(treapItems(x), lo)
     checkTreap(t, y)
