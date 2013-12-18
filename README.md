@@ -62,21 +62,12 @@ Creates a vertex
 
 **Returns** A new vertex object
 
-### `vertex.value`
+### `vertex.valueOf()`
 The user specified value associated to this vertex
 
 ### `vertex.adjacent`
 An array of all the edges incident to this vertex
 
-### `vertex.componentSize`
-Number of vertices in the connected component containing this vertex
-
-### `vertex.connected(other)`
-Check if two vertices are connected by a path
-
-* `other` is the other vertex to check
-
-**Returns** `true` if there is a path connecting `vertex` to `other` within the graph
 
 ### `var edge = vertex.link(other[, value])`
 Creates an edge linking `vertex` to `other` in the graph.
@@ -86,6 +77,23 @@ Creates an edge linking `vertex` to `other` in the graph.
 
 **Returns** A new edge linking `vertex` to `other`
 
+
+### `vertex.connected(other)`
+Check if two vertices are connected by a path
+
+* `other` is the other vertex to check
+
+**Returns** `true` if there is a path connecting `vertex` to `other` within the graph
+
+### `vertex.cut()`
+Disconnects the vertex from the rest of the graph
+
+### `vertex.componentSize()`
+Number of vertices in the connected component containing this vertex
+
+### `var iterator = vertex.component()`
+Returns an iterator for the connected component containing the vertex
+
 ## Edges
 
 ### `edge.s`
@@ -94,11 +102,42 @@ The first vertex of the edge
 ### `edge.t`
 The second vertex of the edge
 
-### `edge.value`
+### `edge.valueOf()`
 The user-specified value associated with the edge
 
 ### `edge.cut()`
 Removes the edge from the graph
+
+## Component Iterator
+
+The component iterator object supports fast traversal of connected components within the graph.
+
+### `iterator.vertex()`
+Returns the vertex at the position of the iteroator
+
+### `iterator.size()`
+Returns the number of vertices in the connected component
+
+### `iterator.valid()`
+Returns `true` if the iterator is valid or not
+
+### `iterator.next()`
+Advances the iterator to the next position
+
+### `iterator.hasNext()`
+Returns true if iterator has a successor
+
+### `iterator.prev()`
+Moves iterator back one vertex
+
+### `iterator.hasPrev()`
+Returns true if iterator has a predecessor
+
+### `iterator.first()`
+Move iterator to first vertex in component
+
+### `iterator.last()`
+Advance iterator to last vertex in component
 
 # Credits
 (c) 2013 Mikola Lysenko. MIT License
