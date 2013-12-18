@@ -86,6 +86,7 @@ eproto.cut = function() {
       var adj = v.adjacent
       for(var ptr=elist.level(adj, level); ptr<adj.length && adj[ptr].level === level; ++ptr) {
         var e = adj[ptr]
+        console.log("visiting:", e + "")
         var es = e.s
         var et = e.t
         if(es.euler[level].path(et.euler[level])) {

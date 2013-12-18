@@ -11,15 +11,12 @@ tape("dynamic-graph-simple", function(t) {
   var c = createVertex("c")
   var d = createVertex("d")
 
-  var ab = a.link(b)
-  var ac = a.link(c)
-  var cd = c.link(d)
-  var bc = b.link(c)
-
-  console.log(c)
-  ab.cut()
-  console.log(c)
-
+  var ab = a.link(b, "ab")
+  var bc = b.link(c, "bc")
+  var cd = c.link(d, "cd")
+  
+  bc.cut()
+  console.log(a)
 
   t.end()
 })
