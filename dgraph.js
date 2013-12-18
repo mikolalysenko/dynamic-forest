@@ -4,6 +4,7 @@ module.exports = createVertex
 
 var createEulerVertex = require("./lib/euler.js")
 var elist = require("./lib/edge-list.js")
+var ComponentIterator = require("./lib/component-iterator.js")
 
 var KEY_COUNTER = 0
 
@@ -174,6 +175,10 @@ vproto.cut = function() {
   while(this.adjacent.length > 0) {
     this.adjacent[this.adjacent.length-1].cut()
   }
+}
+
+vproto.component = function() {
+  return new ComponentIterator(this.euler[0].node)
 }
 
 function createVertex(value) {

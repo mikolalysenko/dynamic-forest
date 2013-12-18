@@ -7,6 +7,31 @@ J. Holm, K. de Lichtenberg and M. Thorrup.  ["Poly-logarithmic deterministic ful
 # Example
 
 ```javascript
+//Load the module
+var createVertex = require("dynamic-forest")
+
+//Create some vertices
+var a = createVertex("a")
+var b = createVertex("b")
+var c = createVertex("c")
+var d = createVertex("d")
+
+//Print out connectivity between a and c
+console.log(a.connected(c))   //Prints out "false"
+
+//Link vertices together in a cycle
+var ab = a.link(b)
+var bc = b.link(c)
+var cd = c.link(d)
+var da = d.link(a)
+
+//Vertices are now connected
+console.log(a.connected(c))     //Prints out "true"
+
+bc.cut()
+
+console.log
+
 ```
 
 # Install
