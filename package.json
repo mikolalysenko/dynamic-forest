@@ -6,10 +6,11 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "tape": "~2.3.0"
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "~2.3.0",
+    "tap": "~0.4.6"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "tap test/*.js"
   },

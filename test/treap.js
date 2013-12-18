@@ -8,21 +8,25 @@ function checkTreap(t, treap) {
   //Check priorities, generate inorder list
   var list = []
   function visitRec(node, parent) {
+    var c = 1
     t.equals(node.root(), root)
     t.equals(node.parent, parent, "checking parent of " +  node.value + " expect " + (parent ? parent.value : "null"))
     if(node.left) {
       t.ok(node.left.priority > node.priority, "checking left priority dominance of " + node.value)
       t.ok(node.prev, node.value + " has a prev node")
-      visitRec(node.left, node)
+      c += visitRec(node.left, node)
     }
     list.push(node)
     if(node.right) {
       t.ok(node.right.priority > node.priority, "checking right priority dominance of " + node.value)
       t.ok(node.next, node.value + " has a next node")
-      visitRec(node.right, node)
+      c += visitRec(node.right, node)
     }
+    t.equals(c, node.count, "checking count")
+    return c
   }
-  visitRec(root, null)
+  var n = visitRec(root, null)
+  t.equals(n, list.length, "checking total count")
   //Check linked list and tree are consistent
   for(var i=0; i<list.length; ++i) {
     if(i > 0) {
@@ -65,7 +69,7 @@ tape("treap-basic", function(t) {
 
   checkTreap(t, a)
   t.same(treapItems(a), ["a", "b", "c"])
-
+  
   b.remove()
   checkTreap(t, a)
   t.same(treapItems(a), ["a", "c"])
