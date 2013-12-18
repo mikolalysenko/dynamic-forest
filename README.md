@@ -4,6 +4,8 @@ Maintains a spanning forest for an arbitrary undirected graph under incremental 
 
 J. Holm, K. de Lichtenberg and M. Thorrup.  ["Poly-logarithmic deterministic fully-dynamic algorithms for connectivity, minimum spanning tree, 2-edge connectivity and biconnectivity"](http://www.cs.princeton.edu/courses/archive/fall09/cos521/Handouts/polylogarithmic.pdf). 2001.  Journal of the ACM
 
+Connectivity queries can be answered in `O(log(size of component))`, and updates take `O(log(number of vertices)^2)` time.  The total space complexity is `O((number of edges + number of vertices) * log(number of vertices))`.
+
 # Example
 
 ```javascript
@@ -77,11 +79,14 @@ Creates an edge linking `vertex` to `other` in the graph.
 
 **Returns** A new edge linking `vertex` to `other`
 
+**Complexity** `O(log(number of vertices))`, but amortized `O(log(number of vertices)^2)`
 
 ### `vertex.connected(other)`
 Check if two vertices are connected by a path
 
 * `other` is the other vertex to check
+
+**Complexity** `O(log(size of component))`
 
 **Returns** `true` if there is a path connecting `vertex` to `other` within the graph
 
@@ -107,6 +112,8 @@ The user-specified value associated with the edge
 
 ### `edge.cut()`
 Removes the edge from the graph
+
+**Time Complexity** `O(log(number of vertices)^2)` amortized
 
 ## Component Iterator
 
