@@ -28,10 +28,17 @@ var da = d.link(a)
 //Vertices are now connected
 console.log(a.connected(c))     //Prints out "true"
 
+//Cut the edge between b and c
 bc.cut()
 
-console.log
+//Still connected
+console.log(a.connected(c))    //Prints "true"
 
+//Cut edge between a and d
+da.cut()
+
+//Finally a and c are disconnected
+console.log(a.connected(c))   //Prints "false"
 ```
 
 # Install
