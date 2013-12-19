@@ -53,20 +53,20 @@ function checkEulerTour(t, v) {
       if(pe.type === "edge") {
         t.equals(ce, pe.t, "check prev-edge")
       } else {
-        t.equals(ce, pe, "check prev-vert")
-        t.equals(ce, ne)
-        t.equals(ce, v)
-        t.equals(cur.next, null)
-        t.equals(cur.prev, null)
+        t.equals(ce, pe, "check circular connectivity singleton")
+        t.equals(ce, ne, "check circular connectivity")
+        t.equals(ce, v, "check circular connectivity")
+        t.equals(cur.next, null, "must be root")
+        t.equals(cur.prev, null, "must be root")
       }
       if(ne.type === "edge") {
         t.equals(ce, ne.s, "check next-edge")
       } else {
-        t.equals(ce, ne, "check next-vert")
-        t.equals(ce, pe)
-        t.equals(ce, v)
-        t.equals(cur.next, null)
-        t.equals(cur.prev, null)
+        t.equals(ce, pe, "check circular connectivity for singleton")
+        t.equals(ce, ne, "check circular connectivity")
+        t.equals(ce, v, "check circular connectivity")
+        t.equals(cur.next, null, "must be root")
+        t.equals(cur.prev, null, "must be root")
       }
     } else {
       t.ok(false, "check type - fail")
@@ -98,7 +98,7 @@ tape("euler-tour-tree-simple", function(t) {
   t.ok(!c.path(b), "c -/- b")
   t.ok(c.path(c), "c --- c")
 
-  var ab = a.link(b)
+  var ab = a.link(b, "ab")
 
   t.same(tourOf(a), [["a", "b"], ["b", "b"], ["b", "a"], ["a", "a"]])
   t.same(tourOf(b), [["b", "a"], ["a", "a"], ["a", "b"], ["b", "b"]])
@@ -117,7 +117,8 @@ tape("euler-tour-tree-simple", function(t) {
   t.ok(!c.path(b), "c -/- b")
   t.ok(c.path(c), "c --- c")
 
-  var ac = a.link(c)
+  var ac = a.link(c, "ac")
+
   
   checkEulerTour(t, a)
   checkEulerTour(t, b)
@@ -160,7 +161,7 @@ tape("random-euler-tree", function(t) {
     }
     for(var j=0; j<15; ++j) {
       var x = tree[j]
-      e[j] = v[x[1]].link(v[x[0]])
+      e[j] = v[x[1]].link(v[x[0]], [x[0], x[1]])
       checkEulerTour(t, v[0])
     }
     shuffle(e)
