@@ -1,7 +1,7 @@
 {
   "name": "dynamic-forest",
   "version": "0.0.0",
-  "description": "Maintain a spanning forest for a dynamically changing graph",
+  "description": "Maintains connectivity information for a graph under dynamic insertions and deletions",
   "main": "dgraph.js",
   "directories": {
     "test": "test"
@@ -10,11 +10,11 @@
     "binary-search-bounds": "~0.3.1"
   },
   "devDependencies": {
+    "knuth-shuffle": "~1.0.0",
+    "random-tree": "~0.0.0",
     "tape": "~2.3.0",
-    "tap": "~0.4.6",
-    "union-find": "0.0.4",
-    "random-tree": "0.0.0",
-    "knuth-shuffle": "~1.0.0"
+    "union-find": "~0.0.4",
+    "tap": "~0.4.6"
   },
   "scripts": {
     "test": "tap test/*.js"
@@ -24,20 +24,23 @@
     "url": "git://github.com/mikolalysenko/dynamic-forest.git"
   },
   "keywords": [
-    "spanning",
-    "tree",
-    "forest",
+    "dynamic",
+    "graph",
     "connected",
     "component",
-    "graph",
-    "dynamic",
+    "forest",
+    "label",
+    "spanning",
+    "tree",
     "insert",
     "delete",
-    "update",
-    "topology",
-    "path",
+    "remove",
+    "link",
+    "cut",
+    "edge",
     "euler",
-    "tour"
+    "vertex",
+    "path"
   ],
   "author": "Mikola Lysenko",
   "license": "MIT",
