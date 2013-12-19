@@ -182,6 +182,11 @@ tape("treap-merge-split-simple", function(t) {
     t.same(treapItems(x), list)
   }
 
+  var x = nodes[9]
+  var y = x.split()
+  checkTreap(t, x)
+  t.same(treapItems(x), list)
+
   var y = treap("a")
   y.last().insert("b")
   y.last().insert("c")

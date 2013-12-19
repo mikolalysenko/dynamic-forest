@@ -1,6 +1,8 @@
 "use strict"
 
 var tape = require("tape")
+var shuffle = require("knuth-shuffle").knuthShuffle
+var randomTree = require("random-tree")
 var createVertex = require("../lib/euler.js")
 
 function tourOf(v) {
@@ -145,5 +147,34 @@ tape("euler-tour-tree-simple", function(t) {
   t.ok(!c.path(b), "c -/- b")
   t.ok(c.path(c), "c --- c")
   
+  t.end()
+})
+
+tape("random-euler-tree", function(t) {
+  for(var i=0; i<2; ++i) {
+    var tree = randomTree(16)
+    var v = new Array(16)
+    var e = new Array(15)
+    for(var j=0; j<16; ++j) {
+      v[j] = createVertex(j)
+    }
+    for(var j=0; j<15; ++j) {
+      var x = tree[j]
+      e[j] = v[x[1]].link(v[x[0]])
+      checkEulerTour(t, v[0])
+    }
+    shuffle(e)
+    for(var j=0; j<15; ++j) {
+      var v = e[j].s
+      var u = e[j].t
+      t.ok(v.path(u), "checking path connectivity before unlink")
+      t.ok(u.path(v), "checking path connectivity before unlink")
+      e[j].cut()
+      checkEulerTour(t, v)
+      checkEulerTour(t, u)
+      t.ok(!v.path(u), "checking unlink successful")
+      t.ok(!u.path(v), "checking unlink successful")
+    }
+  }
   t.end()
 })

@@ -12,7 +12,9 @@
   "devDependencies": {
     "tape": "~2.3.0",
     "tap": "~0.4.6",
-    "union-find": "0.0.4"
+    "union-find": "0.0.4",
+    "random-tree": "0.0.0",
+    "knuth-shuffle": "~1.0.0"
   },
   "scripts": {
     "test": "tap test/*.js"
