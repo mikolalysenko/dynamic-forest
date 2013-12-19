@@ -14,15 +14,17 @@ tape("random-tester", function(t) {
         tester.cut(e[h])
       }
     } else {
-      var s = (Math.random() * 64)|0
-      var t = (Math.random() * 64)|0
-      tester.link(s, t)
+      var sv = (Math.random() * 64)|0
+      var tv = (Math.random() * 64)|0
+      if(!tester.connected(sv,tv)) {
+        tester.link(sv, tv)
+      }
     }
     if(i % 200 === 199) {
-      tester.verify()
+      tester.verify(true)
     }
   }
-  tester.verify()
+  tester.verify(true)
 
   t.end()
 })
