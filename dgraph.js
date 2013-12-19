@@ -35,7 +35,7 @@ function raiseLevel(edge) {
 
   //Relink if necessary
   if(edge.euler) {
-    edge.euler.push(es.link(et))
+    edge.euler.push(es.link(et, edge))
   }
 }
 
@@ -57,7 +57,7 @@ function link(edge) {
   var et = edge.t.euler
   var euler = new Array(edge.level+1)
   for(var i=0; i<euler.length; ++i) {
-    euler[i] = es[i].link(et[i])
+    euler[i] = es[i].link(et[i], edge)
   }
   edge.euler = euler
 }
@@ -83,11 +83,11 @@ eproto.cut = function() {
   //Search over tv for edge connecting to tw
   function visit(node) {
     if(node.flag) {
+      console.log("visitng:", node)
       var v = node.value.value
       var adj = v.adjacent
       for(var ptr=elist.level(adj, level); ptr<adj.length && adj[ptr].level === level; ++ptr) {
         var e = adj[ptr]
-        console.log("visiting:", e + "")
         var es = e.s
         var et = e.t
         if(es.euler[level].path(et.euler[level])) {
