@@ -14,7 +14,8 @@
     "random-tree": "~0.0.0",
     "tape": "~2.3.0",
     "union-find": "~0.0.4",
-    "tap": "~0.4.6"
+    "tap": "~0.4.6",
+    "bit-twiddle": "0.0.2"
   },
   "scripts": {
     "test": "tap test/*.js"

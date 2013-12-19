@@ -22,6 +22,7 @@ function tourOf(v) {
 
 function checkEulerTour(t, v) {
   var cur = v.node.first()
+  var count = 0
   while(cur) {
 
     var prev = cur.prev || cur.last()
@@ -50,6 +51,7 @@ function checkEulerTour(t, v) {
         t.equals(ce.t, ne, "check tail - v")
       }
     } else if(ce.type === "vertex") {
+      ++count
       if(pe.type === "edge") {
         t.equals(ce, pe.t, "check prev-edge")
       } else {
@@ -73,6 +75,7 @@ function checkEulerTour(t, v) {
     }
     cur = cur.next
   }
+  t.equals(v.count(), count, "checking count is consistent")
 }
 
 tape("euler-tour-tree-simple", function(t) {
