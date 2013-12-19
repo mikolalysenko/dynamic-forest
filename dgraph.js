@@ -2,6 +2,7 @@
 
 module.exports = createVertex
 
+
 var createEulerVertex = require("./lib/euler.js")
 var elist = require("./lib/edge-list.js")
 var ComponentIterator = require("./lib/component-iterator.js")
@@ -12,6 +13,7 @@ var KEY_COUNTER = 0
 function raiseLevel(edge) {
   var s = edge.s
   var t = edge.t
+
   //Update position in edge lists
   removeEdge(s, edge)
   removeEdge(t, edge)
@@ -57,6 +59,12 @@ function link(edge) {
   var et = edge.t.euler
   var euler = new Array(edge.level+1)
   for(var i=0; i<euler.length; ++i) {
+    if(es.length <= i) {
+      es.push(createEulerVertex(edge.s))
+    }
+    if(et.length <= i) {
+      et.push(createEulerVertex(edge.t))
+    }
     euler[i] = es[i].link(et[i], edge)
   }
   edge.euler = euler
@@ -80,10 +88,14 @@ eproto.valueOf = function() {
 eproto.cut = function() {
   var level
 
+  //Don't double cut an edge
+  if(!this.s) {
+    return
+  }
+
   //Search over tv for edge connecting to tw
   function visit(node) {
     if(node.flag) {
-      console.log("visitng:", node)
       var v = node.value.value
       var adj = v.adjacent
       for(var ptr=elist.level(adj, level); ptr<adj.length && adj[ptr].level === level; ++ptr) {

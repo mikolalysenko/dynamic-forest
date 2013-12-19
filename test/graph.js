@@ -56,13 +56,12 @@ function createGraphTester(t, n) {
     link: function(i,j) {
       var e = [[i,j]]
       e.push(verts[i].link(verts[j], e))
-      e.push(edges.length)
       edges.push(e)
       return e
     },
     cut: function(e) {
       e[1].cut()
-      edges.splice(e[2], 1)
+      edges.splice(edges.indexOf(e), 1)
     },
     verify: validateGraph,
     edges: function() {
@@ -103,7 +102,7 @@ tape("random-tester", function(t) {
       var t = (Math.random() * 64)|0
       tester.link(s, t)
     }
-    if(i % 25 === 0) {
+    if(i % 50 === 49) {
       tester.verify()
     }
   }
