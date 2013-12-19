@@ -2,7 +2,7 @@
 
 module.exports = createGraphTester
 
-var createVertex = require("../dgraph.js")
+var createVertex = require("../../dgraph.js")
 var UnionFind = require("union-find")
 var bits = require("bit-twiddle")
 

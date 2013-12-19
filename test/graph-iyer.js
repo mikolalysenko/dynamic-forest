@@ -1,6 +1,6 @@
 "use strict"
 
-var createGraphTester = require("../lib/graph-tester.js")
+var createGraphTester = require("./lib/graph-tester.js")
 var tape = require("tape")
 
 function createTree(t, levels) {
