@@ -6,6 +6,8 @@ J. Holm, K. de Lichtenberg and M. Thorrup.  ["Poly-logarithmic deterministic ful
 
 Connectivity queries can be answered in `O(log(size of component))`, and updates take `O(log(number of vertices)^2)` time.  The total space complexity is `O((number of edges + number of vertices) * log(number of vertices))`.
 
+This code works both in node.js and in the browser using [browserify](http://browserify.org/).
+
 # Example
 
 ```javascript
