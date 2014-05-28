@@ -8,6 +8,10 @@ Connectivity queries can be answered in `O(log(size of component))`, and updates
 
 This code works both in node.js and in the browser using [browserify](http://browserify.org/).
 
+[![testling badge](https://ci.testling.com/mikolalysenko/dynamic-forest.png)](https://ci.testling.com/mikolalysenko/dynamic-forest)
+
+[![build status](https://secure.travis-ci.org/mikolalysenko/dynamic-forest.png)](http://travis-ci.org/mikolalysenko/dynamic-forest)
+
 # Example
 
 ```javascript
